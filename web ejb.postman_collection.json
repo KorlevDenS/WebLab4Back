@@ -1,0 +1,221 @@
+{
+	"info": {
+		"_postman_id": "3a371860-c3b5-4e31-8d43-a7c347b03f66",
+		"name": "web ejb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19256370"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"2\",\r\n    \"password\": \"2\"\r\n}"
+						},
+						"url": {
+							"raw": "{{server_url}}/api/auth/register",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"2\",\r\n    \"password\": \"2\"\r\n}"
+						},
+						"url": {
+							"raw": "{{server_url}}/api/auth/login",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiZXhwIjo0NjIyNDcwNDIyfQ.Lfd-rTTLjSHdMt29VtVty_JHTIw4nRBTK22_ySxo0Rw3gVZZqI77JwIgc3CBpS9XyOeS4gdRXUkqm2hmFiPX3A",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server_url}}/api/auth/logout",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "points",
+			"item": [
+				{
+					"name": "Get points",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiZXhwIjo0NjIyNDcwNDIyfQ.Lfd-rTTLjSHdMt29VtVty_JHTIw4nRBTK22_ySxo0Rw3gVZZqI77JwIgc3CBpS9XyOeS4gdRXUkqm2hmFiPX3A",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server_url}}/api/points",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"points"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add point",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiZXhwIjo0NjIyNDcwNDIyfQ.Lfd-rTTLjSHdMt29VtVty_JHTIw4nRBTK22_ySxo0Rw3gVZZqI77JwIgc3CBpS9XyOeS4gdRXUkqm2hmFiPX3A",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"x\": 2,\r\n    \"y\": -2,\r\n    \"r\": 4\r\n}"
+						},
+						"url": {
+							"raw": "{{server_url}}/api/points",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"points"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear points",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiZXhwIjo0NjIyNDcwNDIyfQ.Lfd-rTTLjSHdMt29VtVty_JHTIw4nRBTK22_ySxo0Rw3gVZZqI77JwIgc3CBpS9XyOeS4gdRXUkqm2hmFiPX3A",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server_url}}/api/points",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"points"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "server_url",
+			"value": "http://127.0.0.1:8080/backend",
+			"type": "string"
+		}
+	]
+}
