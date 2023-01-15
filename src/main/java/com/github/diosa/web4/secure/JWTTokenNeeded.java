@@ -1,4 +1,4 @@
-package com.github.diosa.web4.filter;
+package com.github.diosa.web4.secure;
 
 import javax.ws.rs.NameBinding;
 import java.lang.annotation.Retention;

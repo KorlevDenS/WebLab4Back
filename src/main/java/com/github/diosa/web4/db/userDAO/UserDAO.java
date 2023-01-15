@@ -1,4 +1,4 @@
-package com.github.diosa.web4.dao.userDAO;
+package com.github.diosa.web4.db.userDAO;
 
 import com.github.diosa.web4.models.User;
 
@@ -8,11 +8,13 @@ import javax.ejb.Stateless;
 public interface UserDAO {
     User create(User dto);
 
-    User update(User user);
+    User updateAutheticated(User user);
 
     void delete(User user);
 
     User get(int id);
 
     User get(String username);
+
+    User get(String username, String password);
 }

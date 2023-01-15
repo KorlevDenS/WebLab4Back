@@ -1,4 +1,4 @@
-package com.github.diosa.web4.dao.pointDAO;
+package com.github.diosa.web4.db.pointDAO;
 
 import com.github.diosa.web4.models.Point;
 

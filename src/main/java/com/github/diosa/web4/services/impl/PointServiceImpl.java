@@ -1,11 +1,13 @@
 package com.github.diosa.web4.services.impl;
 
-import com.github.diosa.web4.dao.pointDAO.PointDAOImpl;
+import com.github.diosa.web4.db.pointDAO.PointDAOImpl;
+import com.github.diosa.web4.exceptions.ApiException;
 import com.github.diosa.web4.models.Point;
-import com.github.diosa.web4.models.User;
 import com.github.diosa.web4.services.PointService;
 
 import javax.inject.Inject;
+import javax.ws.rs.core.Response;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class PointServiceImpl implements PointService {
@@ -13,9 +15,10 @@ public class PointServiceImpl implements PointService {
     private PointDAOImpl pointDAO;
 
     @Override
-    public Point create(Point point, User user) {
-        point.setUser(user);
-        point.setRes(this.isHit(point.getX(), point.getY(), point.getR()));
+    public Point create(Point point, String username) {
+        point.setUsername(username);
+        this.checkHit(point);
+        point.setDateTime(LocalDateTime.now());
         point.setExecutionTime(System.nanoTime() - point.getExecutionTime());
         return pointDAO.create(point);
     }
@@ -30,8 +33,34 @@ public class PointServiceImpl implements PointService {
         return pointDAO.getAllByUsername(username);
     }
 
-    private boolean isHit(double x, double y, double r) {
-        return isRectangle(x, y, r) || isTriangle(x, y, r) || isCircle(x, y, r);
+
+    private void checkHit(Point point) {
+        double x = point.getX();
+        double y = point.getY();
+        double r = point.getY();
+        this.validateHit(x, y, r);
+        if (isCircle(x, y, r)) {
+            point.setMessage("Точка попала в четверть круга");
+            point.setRes(true);
+            return;
+        }
+        if (isRectangle(x, y, r)) {
+            point.setMessage("Точка попала в прямоугольник");
+            point.setRes(true);
+            return;
+        }
+        if (isTriangle(x, y, r)) {
+            point.setMessage("Точка попала в треугольник");
+            point.setRes(true);
+            return;
+        }
+        point.setMessage("Точка не попала в область");
+        point.setRes(false);
+    }
+
+    private void validateHit(double x, double y, double r) {
+        if (x < -3d || x > 3d || y < -4d || y > 4d || r < -4d || r > 4d)
+            throw new ApiException("Ошибка валидации", Response.Status.BAD_REQUEST);
     }
 
     private boolean isRectangle(double x, double y, double r) {

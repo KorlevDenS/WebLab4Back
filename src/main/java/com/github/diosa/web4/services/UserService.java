@@ -10,6 +10,8 @@ public interface UserService {
 
     User login(User dto);
 
+    User logout(String username);
+
     String issueToken(String username);
 
     User getUser(String username);
