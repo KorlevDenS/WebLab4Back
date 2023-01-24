@@ -2,11 +2,10 @@ package com.github.diosa.web4.resources;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.diosa.web4.factory.ResponseFactory;
 import com.github.diosa.web4.models.Point;
 import com.github.diosa.web4.secure.JWTTokenNeeded;
 import com.github.diosa.web4.services.PointService;
-import com.github.diosa.web4.services.UserService;
-import org.json.JSONArray;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -31,9 +30,7 @@ public class PointsResource {
         ObjectMapper obj = new ObjectMapper();
         Point point = obj.readValue(json, Point.class);
 
-        return Response.ok()
-                .entity(pointService.create(point, this.getUsernameFromHeader())
-                ).build();
+        return ResponseFactory.createSuccessResponse(pointService.create(point, this.getUsernameFromHeader()));
     }
 
     @JWTTokenNeeded
@@ -43,7 +40,7 @@ public class PointsResource {
         System.out.println(points);
         if (points.isEmpty()) return Response.noContent().build();
 
-        return Response.ok().entity(points).build();
+        return ResponseFactory.createSuccessResponse(points);
     }
 
     @JWTTokenNeeded
@@ -51,7 +48,7 @@ public class PointsResource {
     public Response clearPoints(String json) {
         String username = this.getUsernameFromHeader();
         pointService.deleteAllByUsername(username);
-        return Response.ok().build();
+        return ResponseFactory.createSuccessResponse();
     }
 
     private String getUsernameFromHeader() {
