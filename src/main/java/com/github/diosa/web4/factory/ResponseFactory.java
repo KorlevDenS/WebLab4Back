@@ -17,7 +17,7 @@ public class ResponseFactory {
     }
 
     public static Response createResponse(int status) {
-        return createResponse(status);
+        return createResponse(status, null);
     }
 
     public static Response createResponse(int status, Object entity) {
