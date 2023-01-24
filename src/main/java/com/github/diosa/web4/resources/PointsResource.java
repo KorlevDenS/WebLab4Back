@@ -38,7 +38,7 @@ public class PointsResource {
     public Response getPoints(String json) {
         List<Point> points = pointService.getAllByUsername(this.getUsernameFromHeader());
         System.out.println(points);
-        if (points.isEmpty()) return Response.noContent().build();
+        if (points.isEmpty()) return ResponseFactory.createResponse(204);
 
         return ResponseFactory.createSuccessResponse(points);
     }

@@ -16,6 +16,10 @@ public class ResponseFactory {
         return createResponse(200, entity);
     }
 
+    public static Response createResponse(int status) {
+        return createResponse(status);
+    }
+
     public static Response createResponse(int status, Object entity) {
         return Response
                 .status(status)
