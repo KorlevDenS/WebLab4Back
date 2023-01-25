@@ -30,7 +30,7 @@ public class JWTTokenNeededFilter implements ContainerRequestFilter {
 
         String name = keyGenerator.decodeKey(authorizationHeader);
 
-        if (name == null) requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
+        if (name == null) requestContext.abortWith(Response.status(Response.Status.METHOD_NOT_ALLOWED).build());
 
         requestContext.setProperty("username", name);
     }
