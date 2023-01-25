@@ -1,5 +1,6 @@
 package com.github.diosa.web4.filter;
 
+import com.github.diosa.web4.exceptions.ApiException;
 import com.github.diosa.web4.secure.JWTTokenNeeded;
 import com.github.diosa.web4.secure.KeyGenerator;
 
@@ -26,7 +27,7 @@ public class JWTTokenNeededFilter implements ContainerRequestFilter {
         String authorizationHeader = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
 
         if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer "))
-            throw new NotAuthorizedException("Authorization header must be provided");
+            throw new ApiException("Вы не вошли в ситсему", Response.Status.METHOD_NOT_ALLOWED);
 
         String name = keyGenerator.decodeKey(authorizationHeader);
 
