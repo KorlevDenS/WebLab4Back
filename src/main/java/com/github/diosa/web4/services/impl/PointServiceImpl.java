@@ -38,7 +38,6 @@ public class PointServiceImpl implements PointService {
         double x = point.getX();
         double y = point.getY();
         double r = point.getY();
-        this.validateHit(x, y, r);
         if (isCircle(x, y, r)) {
             point.setMessage("Точка попала в четверть круга");
             point.setRes(true);
@@ -56,11 +55,6 @@ public class PointServiceImpl implements PointService {
         }
         point.setMessage("Точка не попала в область");
         point.setRes(false);
-    }
-
-    private void validateHit(double x, double y, double r) {
-        if (x < -3d || x > 3d || y < -4d || y > 4d || r < -4d || r > 4d)
-            throw new ApiException("Ошибка валидации", Response.Status.BAD_REQUEST);
     }
 
     private boolean isRectangle(double x, double y, double r) {
