@@ -1,12 +1,10 @@
 package com.github.diosa.web4.services.impl;
 
 import com.github.diosa.web4.db.pointDAO.PointDAOImpl;
-import com.github.diosa.web4.exceptions.ApiException;
 import com.github.diosa.web4.models.Point;
 import com.github.diosa.web4.services.PointService;
 
 import javax.inject.Inject;
-import javax.ws.rs.core.Response;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -37,13 +35,14 @@ public class PointServiceImpl implements PointService {
     private void checkHit(Point point) {
         double x = point.getX();
         double y = point.getY();
-        double r = point.getY();
+        double r = point.getR();
         if (isCircle(x, y, r)) {
             point.setMessage("Точка попала в четверть круга");
             point.setRes(true);
             return;
         }
         if (isRectangle(x, y, r)) {
+            System.out.println("isRectangle");
             point.setMessage("Точка попала в прямоугольник");
             point.setRes(true);
             return;
