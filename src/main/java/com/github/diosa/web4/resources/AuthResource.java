@@ -33,9 +33,7 @@ public class AuthResource {
     public Response register(String json) throws JsonProcessingException {
         User user = objectMapper.readValue(json, User.class);
 
-        userService.register(user.toBuilder()
-                .authenticated(true)
-                .build());
+        userService.register(user);
         String token = userService.issueToken(user.getUsername());
 
         return ResponseFactory.createSuccessResponse(new UserResponse(token));
@@ -46,9 +44,7 @@ public class AuthResource {
     public Response login(String json) throws JsonProcessingException {
         User user = objectMapper.readValue(json, User.class);
 
-        userService.login(user.toBuilder()
-                .authenticated(true)
-                .build());
+        userService.login(user);
         String token = userService.issueToken(user.getUsername());
 
         return ResponseFactory.createSuccessResponse(new UserResponse(token));

@@ -21,18 +21,18 @@ public class KeyGeneratorImpl implements KeyGenerator {
 
     @Override
     public String decodeKey(String authorizationHeader) {
-        String token = authorizationHeader.substring("Bearer".length()).trim();
-        java.util.Base64.Decoder decoder = java.util.Base64.getUrlDecoder();
-        String[] parts = token.split("\\.");
-        String payloadJson = new String(decoder.decode(parts[1]));
-        JSONObject jsonObject = new JSONObject(payloadJson);
         try {
+            String token = authorizationHeader.substring("Bearer".length()).trim();
+            java.util.Base64.Decoder decoder = java.util.Base64.getUrlDecoder();
+            String[] parts = token.split("\\.");
+            String payloadJson = new String(decoder.decode(parts[1]));
+            JSONObject jsonObject = new JSONObject(payloadJson);
             Key key = this.generateKey();
             Jwts.parser().setSigningKey(key).parseClaimsJws(token);
 
+            return jsonObject.getString("sub");
         } catch (Exception e) {
             return null;
         }
-        return jsonObject.getString("sub");
     }
 }

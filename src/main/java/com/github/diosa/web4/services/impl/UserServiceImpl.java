@@ -37,11 +37,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User login(User dto) {
         User user = userDAO.get(dto.getUsername(), hashAlgorithm.makeHash(dto.getPassword()));
-        System.out.println(user);
         if (user == null) throw new ApiException("Неправильный логин или пароль",
                 Response.Status.UNAUTHORIZED);
-        else if (user.isAuthenticated())
-            throw new ApiException("Пользователь уже вошел в систему", Response.Status.CONFLICT);
         return user;
     }
 
@@ -49,10 +46,8 @@ public class UserServiceImpl implements UserService {
     public User logout(String username) {
         User user = userDAO.get(username);
         System.out.println(user);
-        if (user != null && user.isAuthenticated())
-            return this.userDAO.updateAutheticated(user.toBuilder()
-                    .authenticated(false)
-                    .build());
+        if (user != null)
+            return this.userDAO.updateAutheticated(user);
         throw new ApiException("Пользователь не вошел в систему", Response.Status.CONFLICT);
 
     }
