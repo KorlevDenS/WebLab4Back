@@ -6,14 +6,14 @@
     <persistence-unit name="myUnit" transaction-type="JTA">
 
         <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
-        <class>com.github.diosa.web4.models.User</class>
-        <class>com.github.diosa.web4.models.Point</class>
+        <class>com.korolevs.weblab.web4.model.User</class>
+        <class>com.korolevs.weblab.web4.model.Point</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> <!-- DB Driver -->
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres" /> <!-- BD Mane -->
-            <property name="javax.persistence.jdbc.user" value="postgres" /> <!-- DB User -->
-            <property name="javax.persistence.jdbc.password" value="123" /> <!-- DB Password -->
+            <property name="javax.persistence.jdbc.user" value="s335086" /> <!-- DB User -->
+            <property name="javax.persistence.jdbc.password" value="LcXpMYF3dsJ4oakD" /> <!-- DB Password -->
 
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"/>
             <property name="hibernate.show_sql" value="true" />
